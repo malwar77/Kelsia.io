@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kelsia — AI Business Agent (Demo Website)</title>
+<meta name="description" content="Static demo website for Kelsia. Data is saved only in this browser. Nothing posts, sends, or charges from here.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0b1220;color:#e5e7eb;line-height:1.5}
+a{color:#7dd3fc}.topbar{position:sticky;top:0;z-index:10;background:#0f172a;border-bottom:1px solid #1e293b;padding:14px 16px}
+.brand{font-size:20px;font-weight:800}.brand small{display:block;font-size:13px;color:#94a3b8;font-weight:400}
+.banner{background:#422006;border:1px solid #f59e0b;color:#fde68a;padding:10px 12px;border-radius:10px;margin-top:12px;font-size:14px;font-weight:600}
+nav{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#111827;border-bottom:1px solid #1e293b;scrollbar-width:thin}
+nav button{flex:0 0 auto;border:1px solid #334155;background:#1e293b;color:#e5e7eb;border-radius:999px;padding:8px 13px;cursor:pointer;font-size:14px}
+nav button.active{background:#2563eb;border-color:#2563eb;color:#fff}
+main{max-width:900px;margin:0 auto;padding:18px 14px 40px}
+section{display:none}section.active{display:block}
+h1{font-size:26px;margin:0 0 6px}h2{font-size:19px;margin:22px 0 8px}.muted{color:#94a3b8}.card{background:#111827;border:1px solid #1e293b;border-radius:14px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grid,.grid3{grid-template-columns:1fr}}
+.kpi{font-size:26px;font-weight:800}.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;background:#334155;color:#e2e8f0}
+.badge.warn{background:#422006;color:#fde68a}.badge.ok{background:#14532d;color:#bbf7d0}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:8px;border-bottom:1px solid #1e293b;font-size:14px}
+input,textarea,select{width:100%;background:#0b1220;border:1px solid #334155;color:#e5e7eb;border-radius:10px;padding:10px;margin:6px 0}
+button.primary{background:#2563eb;color:#fff;border:0;border-radius:10px;padding:10px 16px;cursor:pointer}
+button.secondary{background:#1e293b;color:#e5e7eb;border:1px solid #334155;border-radius:10px;padding:9px 14px;cursor:pointer}
+.chatbox{border:1px solid #334155;border-radius:12px;padding:12px;min-height:160px;background:#0b1220}
+.msg{margin:8px 0}.msg b{color:#7dd3fc}footer{color:#94a3b8;font-size:13px;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="brand">Kelsia <span style="font-weight:400;color:#94a3b8">/ AI Business Agent</span><small>Demo website — not the full Kelsia app</small></div>
+<div class="banner">Demo website — data is saved only in this browser. Nothing posts, sends, or charges from here.</div>
+</header>
+<nav id="nav" aria-label="Kelsia sections">
+<button data-tab="dashboard" class="active">Dashboard</button><button data-tab="chat">Super Agent</button><button data-tab="agents">Agents</button><button data-tab="tasks">Tasks</button><button data-tab="social">Social</button><button data-tab="outreach">Outreach</button><button data-tab="ads">Ads</button><button data-tab="finance">Finance</button><button data-tab="memory">Memory</button><button data-tab="artifacts">Artifacts</button><button data-tab="approvals">Approvals</button><button data-tab="integrations">Integrations</button><button data-tab="settings">Settings</button>
+</nav>
+<main>
+<!-- DASHBOARD -->
+<section id="dashboard" class="active">
+<h1>Dashboard</h1><p class="muted">Demo data only. These are seed values, not live business results.</p>
+<div class="grid">
+<div class="card"><div class="muted">Tasks Today</div><div class="kpi">4</div><p class="muted">4 total · 0 completed · 0 failed (demo seed)</p></div>
+<div class="card"><div class="muted">MRR</div><div class="kpi">$0</div><p class="muted">Demo value only</p></div>
+<div class="card"><div class="muted">Active Customers</div><div class="kpi">0</div><p class="muted">Demo value only</p></div>
+<div class="card"><div class="muted">Churn Rate</div><div class="kpi">0%</div><p class="muted">Demo value only</p></div>
+</div>
+<h2>Daily report (demo)</h2>
+<div class="grid">
+<div class="card"><h2 style="margin-top:0">Morning plan</h2><p>Demo seed plan: review the company mission and positioning, then plan today's priorities with the Orchestrator. This is demo content only.</p></div>
+<div class="card"><h2 style="margin-top:0">Evening summary</h2><p>Evening summary not yet generated — it will appear after the 20:00 cycle.</p></div>
+</div>
+<h2>Agent Status (demo)</h2>
+<div class="grid" id="agentGrid"></div>
+<h2>Live Activity (demo)</h2>
+<div class="card"><p>Demo activity only. No live agent runs are happening on this static site.</p><p><span class="badge">Demo</span> Seed data loaded in this browser.</p></div>
+</section>
+
+<!-- CHAT -->
+<section id="chat">
+<h1>Kelsia Super Agent</h1><p class="muted">Business operations, one conversation away — demo only.</p>
+<div class="card">
+<div class="chatbox" id="chatBox"><div class="msg"><b>Kelsia (demo):</b> What can I help you run today? This is a demo chat — I cannot post, send, charge, or run a live agent from this static site.</div></div>
+<input id="chatInput" maxlength="4000" placeholder="Message your super agent… (demo only)">
+<p><button class="primary" onclick="demoChat()">Send (demo)</button> <button class="secondary" onclick="quickChat('Give me today\'s priorities')">Give me today's priorities</button> <button class="secondary" onclick="quickChat('Review our growth strategy')">Review our growth strategy</button> <button class="secondary" onclick="quickChat('Summarize recent work')">Summarize recent work</button></p>
+<p class="muted">AI-generated responses can be incorrect. Confirm important business decisions. Demo replies are canned and do not use any external service.</p>
+</div>
+</section>
+
+<!-- AGENTS -->
+<section id="agents">
+<h1>Agents</h1><p class="muted">Demo list. Agent runs on this site are local demos only — nothing executes externally.</p>
+<div id="agentList"></div>
+</section>
+
+<!-- TASKS -->
+<section id="tasks">
+<h1>Tasks</h1><p class="muted">Read-only in this demo. These are the 4 seed tasks only.</p>
+<div class="card"><table><tr><th>Task</th><th>Agent</th><th>Status</th></tr>
+<tr><td>Review company mission and positioning</td><td>Orchestrator (demo)</td><td><span class="badge warn">Pending</span></td></tr>
+<tr><td>Draft your first social post</td><td>Social Media (demo)</td><td><span class="badge warn">Pending</span></td></tr>
+<tr><td>Add your first finance entry</td><td>Finance (demo)</td><td><span class="badge warn">Pending</span></td></tr>
+<tr><td>Plan today's priorities with the Orchestrator</td><td>Orchestrator (demo)</td><td><span class="badge warn">Pending</span></td></tr>
+</table></div>
+</section>
+
+<!-- SOCIAL -->
+<section id="social">
+<h1>Social</h1><p class="muted">Demo only. No posts have been made from this site, and nothing will post from here.</p>
+<div class="card"><p>No social posts in this demo.</p><p>Integration status: <span class="badge warn">Twitter / X — Not connected</span></p></div>
+</section>
+
+<!-- OUTREACH -->
+<section id="outreach">
+<h1>Outreach</h1><p class="muted">Demo only. No prospects and no emails in this demo.</p>
+<div class="card"><table><tr><th>Email</th><th>Name</th><th>Company</th><th>Status</th></tr><tr><td colspan="4" class="muted">No outreach contacts in this demo. Nothing has been sent.</td></tr></table></div>
+</section>
+
+<!-- ADS -->
+<section id="ads">
+<h1>Ads</h1><p class="muted">Demo only. No campaigns, no spend.</p>
+<div class="card"><p>Campaigns: 0 (demo) · Spent: $0 (demo) · Budget: $0/day (demo)</p><p>Integration status: <span class="badge warn">Google Ads — Not connected</span> <span class="badge warn">Meta Ads — Not connected</span></p></div>
+</section>
+
+<!-- FINANCE -->
+<section id="finance">
+<h1>Finance</h1><p class="muted">Demo only. No Stripe figures — nothing is connected.</p>
+<div class="grid3">
+<div class="card"><div class="muted">MRR</div><div class="kpi">$0</div></div>
+<div class="card"><div class="muted">ARR</div><div class="kpi">$0</div></div>
+<div class="card"><div class="muted">Active Subscribers</div><div class="kpi">0</div></div>
+<div class="card"><div class="muted">Stripe Balance</div><div class="kpi">—</div></div>
+<div class="card"><div class="muted">Total Ad Spend</div><div class="kpi">$0</div></div>
+<div class="card"><div class="muted">Total Expenses</div><div class="kpi">$0</div></div>
+</div>
+<div class="card"><p>Last snapshot: none yet</p></div>
+</section>
+
+<!-- MEMORY -->
+<section id="memory">
+<h1>Memory</h1><p class="muted">Search-only demo. No live memory search runs from this static site.</p>
+<div class="card"><input id="memoryInput" placeholder="Search memory… (demo only)"><button class="primary" onclick="demoMemory()">Search (demo)</button><p id="memoryResult" class="muted">Demo memory is empty in this browser.</p></div>
+</section>
+
+<!-- ARTIFACTS -->
+<section id="artifacts">
+<h1>Artifacts</h1><p class="muted">Demo only. Artifacts created here exist only in this browser.</p>
+<div class="card"><input id="artifactTitle" placeholder="Demo artifact title"><textarea id="artifactBody" placeholder="Demo artifact content"></textarea><button class="primary" onclick="addArtifact()">Create (demo, local only)</button><ul id="artifactList"><li class="muted">No artifacts in this demo yet.</li></ul></div>
+</section>
+
+<!-- APPROVALS -->
+<section id="approvals">
+<h1>Approvals</h1><p class="muted">Demo queue. Approving or rejecting here only changes this demo item in this browser — nothing is executed externally.</p>
+<div class="card" id="approvalCard">
+<p><b>Example demo item</b> — Agent: Social Media · Integration: Twitter / X (Not connected)</p>
+<p>Action: Draft a demo social post. Draft text (demo example, not posted): “Hello from Kelsia — demo draft only.”</p>
+<p>Recipient: none · Amount: $0</p>
+<p>Status: <span id="approvalStatus" class="badge warn">Pending (demo)</span></p>
+<p><button class="primary" onclick="decideApproval('Approved')">Approve (demo)</button> <button class="secondary" onclick="decideApproval('Rejected')">Reject (demo)</button></p>
+<p id="approvalNote" class="muted">Note: approving this demo item does not post anything, because this is a static demo and Twitter / X is not connected. Nothing was executed externally.</p>
+</div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations">
+<h1>Integrations</h1><p class="muted">All shown as Not connected. This page never asks for keys, secrets, tokens, or passwords. Real connections belong in the full self-hosted app or a secure connection flow — never in this demo page or in chat.</p>
+<div id="integrationList"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings">
+<h1>Settings</h1>
+<div class="card"><h2 style="margin-top:0">Mode</h2><p><span class="badge ok">Real — approval-first</span> (label only on this demo site)</p><p class="muted">Automatic mode is locked. Real execution requires the full self-hosted app or the private Muse app, not this static site. Nothing on this site posts, sends, or charges.</p></div>
+<div class="card"><h2 style="margin-top:0">Company (demo seed)</h2><p><b>My Company</b><br>Mission: Build products that make people's lives better.<br>Vision: Become the go-to solution in our market within 3 years.<br>Market: SMB, North America (demo seed)<br>Plans: Starter $49 / Pro $149 (demo seed labels only)</p></div>
+<div class="card"><h2 style="margin-top:0">Daily cycles (demo labels)</h2><p>Morning cycle: 06:00 · Evening cycle: 20:00 · Social sweep: every 2 hours · Email sweep: every 3 hours · Ads/Stripe sync: every 6 hours. These are schedule labels only — no cycles run on this static site.</p></div>
+</section>
+</main>
+<footer>Kelsia demo website · Data is saved only in this browser · Nothing posts, sends, or charges from here.</footer>
+<script>
+var agents=[
+["Orchestrator","Generates daily task plans and evening summaries","Daily 06:00 & 20:00"],
+["Strategy","Analyzes strategy, updates KPIs, identifies opportunities","On demand"],
+["Research","Researches competitors and market positioning","On demand"],
+["Social","Drafts and posts tweets, monitors engagement","Every 2 hours"],
+["Ads","Manages Google and Meta ad campaigns","Every 6 hours"],
+["Outreach","Finds prospects and sends personalized cold emails","Every 3 hours"],
+["Code","Writes code, commits to GitHub, deploys","On demand"],
+["Support","Reads inbox and drafts customer replies","On demand"],
+["Finance","Monitors Stripe revenue, expenses, and alerts","On demand"]];
+var integrations=[
+["Twitter / X","Post tweets and monitor engagement.","An X developer app with API credentials."],
+["SendGrid + IMAP (Email)","Send cold emails and read the support inbox.","A SendGrid account with a verified sender, plus IMAP mailbox details."],
+["Tavily (Web Search)","Live web search for competitor research.","A Tavily account."],
+["Google Ads","Create and manage Google Ads campaigns.","A Google Ads account and developer token; business verification is usually required."],
+["Meta Ads","Create and manage Facebook/Instagram ad campaigns.","A Meta Business Manager account and ad account."],
+["Stripe","Revenue, expenses and failed-payment monitoring. This touches real money once connected.","A Stripe account with a secret key and webhook secret."],
+["GitHub","Open pull requests from code generation.","A GitHub token with repo scope, or a GitHub App installed on the repo."],
+["Telegram Bot","Send notifications and receive commands.","A Telegram bot and an allow-list of user IDs."],
+["WhatsApp Cloud API","Send WhatsApp messages through Meta's WhatsApp Cloud API.","A Meta app with WhatsApp enabled, a phone number ID, and an access token."],
+["Ollama (Local Brain)","The original app's local model brain. Not an external account.","Ollama running on your own PC or server with the qwen2.5:3b model."]];
+function renderAgents(){
+var g=document.getElementById('agentGrid'),l=document.getElementById('agentList'),gh='',lh='';
+agents.forEach(function(a){gh+='<div class="card"><b>'+a[0]+'</b><br><span class="badge">Demo — not running</span><br><span class="muted">'+a[1]+'</span><br><span class="muted">Schedule: '+a[2]+'</span></div>';
+lh+='<div class="card"><b>'+a[0]+'</b> · <span class="badge">Demo — not running</span><p class="muted">'+a[1]+'</p><p class="muted">Schedule: '+a[2]+'</p><button class="secondary" onclick="queueDemo(\''+a[0]+'\')">Run now (demo queue only)</button></div>';});
+g.innerHTML=gh;l.innerHTML=lh;
+var il=document.getElementById('integrationList'),ih='';
+integrations.forEach(function(i){ih+='<div class="card"><b>'+i[0]+'</b> · <span class="badge warn">Not connected</span><p class="muted">'+i[1]+'</p><p>Needs: '+i[2]+'</p><p class="muted">Do not enter keys here. Keys belong in the full self-hosted app or a secure connection flow.</p></div>';});
+il.innerHTML=ih;}
+document.querySelectorAll('#nav button').forEach(function(b){b.addEventListener('click',function(){
+document.querySelectorAll('#nav button').forEach(function(x){x.classList.remove('active')});b.classList.add('active');
+document.querySelectorAll('main section').forEach(function(s){s.classList.remove('active')});
+document.getElementById(b.getAttribute('data-tab')).classList.add('active');window.scrollTo(0,0);});});
+function demoChat(){var v=document.getElementById('chatInput').value.trim();if(!v)return;addMsg('You (demo)',v);addMsg('Kelsia (demo)','This is a demo reply. I cannot post, send, charge, or run a live agent from this static site. For real actions, use the full self-hosted Kelsia app or the private Muse app with approval-first mode.');document.getElementById('chatInput').value='';}
+function quickChat(t){document.getElementById('chatInput').value=t;demoChat();}
+function addMsg(who,text){var d=document.createElement('div');d.className='msg';d.innerHTML='<b>'+who+':</b> '+text.replace(/</g,'&lt;');document.getElementById('chatBox').appendChild(d);}
+function demoMemory(){document.getElementById('memoryResult').textContent='Demo search only: no live memory search runs from this static site, and no results were fetched externally.';}
+function addArtifact(){var t=document.getElementById('artifactTitle').value.trim();if(!t)return;var li=document.createElement('li');li.textContent=t+' — demo artifact, local to this browser only, status: in_review';document.getElementById('artifactList').appendChild(li);document.getElementById('artifactTitle').value='';document.getElementById('artifactBody').value='';}
+function decideApproval(v){document.getElementById('approvalStatus').textContent=v+' (demo)';document.getElementById('approvalNote').textContent='Demo result: '+v+' in this browser only. Nothing was executed externally, nothing was posted, sent, or charged.';}
+function queueDemo(a){alert('Demo: a run for '+a+' was queued locally in this browser only. Nothing was executed externally. See Approvals for the demo queue pattern.');}
+renderAgents();
+</script>
+</body>
+</html>
