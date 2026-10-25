@@ -15,12 +15,12 @@ Integrations, and Settings — in the original order.
   data is demo/seed data in the page itself, or saved only in the visitor's
   own browser (demo chat, demo artifacts, demo approval state).
 - **Nothing posts, sends, or charges from here.** All 10 integrations
-  (Twitter/X, SendGrid + IMAP, Tavily, Google Ads, Meta Ads, Stripe, GitHub,
+  (Twitter/X, SendGrid + IMAP, Tavily, Google Ads, Meta Ads, PayPal, GitHub,
   Telegram, WhatsApp Cloud API, Ollama) are shown as **Not connected**.
 - It never asks for API keys, secrets, tokens, or passwords. Real connections
   belong in the full self-hosted Kelsia app or a secure connection flow —
   never in this demo page or in chat.
-- Finance shows `$0` / `—` only, with "Last snapshot: none yet". No Stripe
+- Finance shows `$0` / `—` only, with "Last snapshot: none yet". No PayPal
   figures are invented. The evening summary is a placeholder, not an invented
   summary. There are no ads, no analytics, no tracking, and no fake
   testimonials or numbers.
