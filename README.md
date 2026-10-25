@@ -21,6 +21,7 @@ Integrations, and Settings — in the original order.
   belong in the full self-hosted Kelsia app or a secure connection flow —
   never in this demo page or in chat.
 - Finance shows `$0` / `—` only, with "Last snapshot: none yet". No PayPal
+- PayPal is the owner's normal personal receiving account; entries are manual, with no automatic PayPal sync.
   figures are invented. The evening summary is a placeholder, not an invented
   summary. There are no ads, no analytics, no tracking, and no fake
   testimonials or numbers.
