@@ -1,4 +1,4 @@
-# Kelsia — Demo Website
+# Kelsia
 
 This is a **static demo website for GitHub Pages**. It is **NOT the full Kelsia app**.
 
